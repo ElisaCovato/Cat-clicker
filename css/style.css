@@ -1,11 +1,20 @@
+/*General styling*/
+body {
+    font-family: "Sunflower", sans-serif;
+}
+
 /*Styles for div containers*/
 .btn-group {
     float: left;
     margin: 30px;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .cat-area {
     float: left;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /*Stile for headings*/
@@ -14,6 +23,8 @@ h1 {
     color: #80003e;
     font-family: 'Indie Flower', cursive;
     font-size: 60px;
+    margin-bottom: 0;
+    margin-top: 2px;
 }
 
 h3 {

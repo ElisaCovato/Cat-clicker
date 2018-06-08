@@ -1,9 +1,13 @@
-/*General styling*/
+/*
+ *General styling
+ */
 body {
     font-family: "Sunflower", sans-serif;
 }
 
-/*Styles for div containers*/
+/*
+ *Styles for div containers
+ */
 .btn-group {
     float: left;
     margin: 30px;
@@ -17,7 +21,9 @@ body {
     padding-top: 0;
 }
 
-/*Stile for headings*/
+/*
+ *Stile for headings
+ */
 h1 {
     text-align: center;
     color: #80003e;
@@ -32,7 +38,9 @@ h3 {
     color: #80003e;
 }
 
-/*Style for buttons*/
+/*
+ *Style for buttons
+ */
 .btn-group button {
     background-color:  #ffe6f2; /* Pinkish background */
     border: 1px solid #b30056; /* Dark pink border */
@@ -50,4 +58,12 @@ h3 {
 /* Add a background color on hover */
 .btn-group button:hover {
     background-color: #b30056;
+}
+
+/* 
+ *Style for images
+ */
+.imgSize {
+    width : 320px;
+    height: 213px;
 }

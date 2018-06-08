@@ -54,6 +54,7 @@ function buttonClicked(buttonSelected, index) {
 		var headerDisplayed = displayHeaderCat(catSelected);
 		var imageDisplayed = displayImageCat(catSelected);
 
+		//Add the increase click function
 		increaseClicks(catSelected, headerDisplayed, imageDisplayed);
 	});
 }

@@ -48,18 +48,25 @@ for (var i = 0; i < buttons.length; i++) {
 // This function add an event listener to the clicked button
 function buttonClicked(buttonSelected, index) {
 	buttonSelected.addEventListener('click', function(){
+		catArea.innerHTML = "";
 		var catSelected = cats['cat'+(index+1)];
-		displayNameCat(catSelected);
-		displayImageCat(catSelected);
+		catSelected['clickCount'] = 0;
+		var headerDisplayed = displayHeaderCat(catSelected);
+		var imageDisplayed = displayImageCat(catSelected);
+
+		increaseClicks(catSelected, headerDisplayed, imageDisplayed);
 	});
 }
 
-// This function display the name of the corresponding selected cat
-function displayNameCat(catSelected) {
+// This function display the name and the clicks for the corresponding selected cat
+function displayHeaderCat(catSelected) {
 	var catName = catSelected['name'];
-	var nameDisplayed = document.createElement("h3");
-	nameDisplayed.textContent = catName;
-	catArea.appendChild(nameDisplayed);
+	var clicks = catSelected['clickCount'];
+	var headerDisplayed = document.createElement("h3");
+	headerDisplayed.textContent = 'Clicks for ' + catName + ' : ' + clicks;
+	catArea.appendChild(headerDisplayed);
+
+	return headerDisplayed;
 };
 
 // This function display the image of the corresponding selected cat
@@ -71,4 +78,16 @@ function displayImageCat(catSelected) {
 	imageDisplayed.src = catImage;
 	imageDisplayed.alt = catImageDescription;
 	catArea.appendChild(imageDisplayed);
+
+	return imageDisplayed;
+};
+
+// This function increases the click counter when the image is clicked
+function increaseClicks(catSelected, headerDisplayed, imageDisplayed) {
+		var clicks = catSelected['clickCount'];
+		var catName = catSelected['name'];
+		imageDisplayed.addEventListener('click', function() {
+			clicks++;
+			headerDisplayed.textContent = 'Clicks for ' + catName + ' : ' + clicks;
+		});
 }

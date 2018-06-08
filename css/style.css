@@ -16,7 +16,7 @@ body {
 }
 
 .cat-area {
-    float: left;
+    margin-left: 35%;
     margin-top: 0;
     padding-top: 0;
 }

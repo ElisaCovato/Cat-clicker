@@ -60,6 +60,19 @@ h3 {
     background-color: #b30056;
 }
 
+.admin {
+    border-radius: 25px;
+    background-color:  #ffe6f2; /* Pinkish background */
+    border: 1px solid #b30056; /* Dark pink border */
+    color: black; /* White text */
+    margin-left: 3.5%;
+    margin-top:-5%;
+    padding: 5px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 10%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
 /* 
  *Style for images
  */

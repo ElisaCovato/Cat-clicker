@@ -1,7 +1,7 @@
 /*Model*/
 var model = {
 	currentCat : null,
-
+	adminShow: false,
 	cats : [
 		{
 			name : 'Mary',
@@ -48,6 +48,8 @@ var octopus = {
         // tell our views to initialize
         catListView.init();
         catView.init();
+        adminView.init();
+        adminView.hide();
     },
 
     getCurrentCat: function() {
@@ -67,7 +69,35 @@ var octopus = {
     incrementCounter: function() {
         model.currentCat.clickCount++;
         catView.render();
-    }
+    },
+
+
+    //function runs when 'Admin' button is clicked.
+    adminDisplay: function(){
+        if (model.adminShow === false) {
+            model.adminShow = true;
+            adminView.show(); //displays the admin input boxes and buttons
+        }
+        else if (model.adminShow === true) {
+            model.adminShow = false;
+            adminView.hide();// hides the admin input boxes and buttons
+        }
+    },
+    
+    //hides admin display when cancel button is clicked.
+    adminCancel: function(){
+        adminView.hide();
+    },
+    
+    //hides admin display and saves new cat data when save button is clicked.
+    adminSave: function(){
+        model.currentCat.name= adminCatName.value;
+        model.currentCat.imgSrc= adminCatURL.value;
+        model.currentCat.clickCount= adminCatClicks.value;
+        catView.render();
+        catListView.render();
+        adminView.hide();
+	}
 };
 
 
@@ -78,6 +108,7 @@ var catView = {
 
     init: function() {
         // store pointers to our DOM elements for easy access later
+        var currentCat = octopus.getCurrentCat();
         this.catElem = document.querySelector('.cat-area');
         this.catNameElem = document.querySelector('.cat-name');
         this.catImageElem = document.querySelector('.cat-img');
@@ -137,6 +168,52 @@ var catListView = {
 
         }
     }
+};
+
+
+var adminView = {
+    init: function(){
+        this.adminCatName = document.querySelector(".adminCatName");
+        this.adminCatURL = document.querySelector(".adminCatURL");
+        this.adminCatClicks = document.querySelector(".adminCatClicks");
+        var admin = document.querySelector(".admin");
+        
+        this.adminBtn = document.querySelector(".adminBtn");
+        this.adminCancelBtn = document.querySelector(".adminCancelBtn");
+        this.adminSaveBtn = document.querySelector(".adminSaveBtn");
+        
+        this.adminBtn.addEventListener('click', function(){ //shows the admin display.
+            octopus.adminDisplay();
+        });
+        
+        this.adminCancelBtn.addEventListener('click', function(){ //hides the admin display without saving any new cat data.
+            octopus.adminCancel();
+        });
+        
+        this.adminSaveBtn.addEventListener('click', function(){ //hides the admin display and saves new cat data.
+            octopus.adminSave();
+        });
+        
+        this.render();
+    },
+    
+    render: function(){
+        var currentCat = octopus.getCurrentCat(); //calls current cat
+        this.adminCatName.value = currentCat.name;
+        this.adminCatURL.value = currentCat.imgSrc;
+        this.adminCatClicks.value = currentCat.clickCount;
+    },
+    
+    show: function(){
+    	var admin = document.querySelector(".admin");
+        admin.style.display = 'block'; //shows the admin div on index.html
+    },
+        
+    hide: function(){
+    	var admin = document.querySelector(".admin");
+        admin.style.display = 'none';
+    }
+
 };
 
 // make it go!

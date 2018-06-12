@@ -5,7 +5,7 @@ This little project has been created as part of the Udacity FEND nanodegree. The
 ## How to run the application
 
 - Clone the **[repo](https://github.com/ElisaCovato/Cat-clicker.git)** and open index.html -- or --
-- Use on GitHub.io: **[Feed Reader](https://elisacovato.github.io/Cat-clicker/)**
+- Use on GitHub.io: **[Cat Clicker](https://elisacovato.github.io/Cat-clicker/)**
 
 
 ## License

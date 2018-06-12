@@ -21,6 +21,11 @@ body {
     padding-top: 0;
 }
 
+.admin {
+    margin-left: 70%;
+    margin-top: -22%
+}
+
 /*
  *Stile for headings
  */
@@ -37,6 +42,12 @@ h3 {
 	margin-left: 25px;
     color: #80003e;
 }
+
+
+p {
+    color: #80003e;
+}
+
 
 /*
  *Style for buttons
@@ -60,7 +71,7 @@ h3 {
     background-color: #b30056;
 }
 
-.admin {
+.adminCancelBtn, .adminSaveBtn, .adminBtn {
     border-radius: 25px;
     background-color:  #ffe6f2; /* Pinkish background */
     border: 1px solid #b30056; /* Dark pink border */
@@ -69,9 +80,15 @@ h3 {
     margin-top:-5%;
     padding: 5px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    width: 10%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+    min-width: 100px; /* Set a width if needed */
 }
+
+
+.adminBtn:hover {
+    background-color: #b30056;
+}
+
+
 
 /* 
  *Style for images

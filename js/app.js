@@ -90,10 +90,10 @@ var octopus = {
     },
     
     //hides admin display and saves new cat data when save button is clicked.
-    adminSave: function(){
-        model.currentCat.name= adminCatName.value;
-        model.currentCat.imgSrc= adminCatURL.value;
-        model.currentCat.clickCount= adminCatClicks.value;
+    adminSave: function(adminCatName, adminCatURL, adminCatClicks){
+        model.currentCat.name= adminCatName;
+        model.currentCat.imgSrc= adminCatURL;
+        model.currentCat.clickCount= adminCatClicks;
         catView.render();
         catListView.render();
         adminView.hide();
@@ -147,14 +147,23 @@ var catListView = {
     render: function() {
         // get the cats we'll be rendering from the octopus
         var cats = octopus.getCats();
-        buttons = document.getElementsByTagName("button");
+        var buttonsGroup = document.querySelector(".jsCatBtn");
+        
+        // Clear all the buttons before rendering the current cats
+        var allButtons = buttonsGroup.querySelectorAll("button");
+        for (var i = 0; i < allButtons.length; i++) {
+        	buttonsGroup.removeChild(allButtons[i]);
+        };
 
 
         // loop over the cats
-        for (var i = 0; i < buttons.length; i++) {
+        for (var i = 0; i < cats.length; i++) {
             // this is the cat we're currently looping over
-            var buttonSelected = buttons[i];
             var cat = cats[i];
+
+            var buttonSelected = document.createElement("button");
+            buttonSelected.textContent = cat.name;
+
 
             // on click, setCurrentCat and render the catView
             // (this uses our closure-in-a-loop trick to connect the value
@@ -166,12 +175,15 @@ var catListView = {
                 };
             })(cat));
 
+            // create the buttons on the page
+            buttonsGroup.appendChild(buttonSelected);
         }
     }
 };
 
 
 var adminView = {
+
     init: function(){
         this.adminCatName = document.querySelector(".adminCatName");
         this.adminCatURL = document.querySelector(".adminCatURL");
@@ -183,16 +195,17 @@ var adminView = {
         this.adminSaveBtn = document.querySelector(".adminSaveBtn");
         
         this.adminBtn.addEventListener('click', function(){ //shows the admin display.
+            this.render();
             octopus.adminDisplay();
-        });
+        }.bind(this));
         
         this.adminCancelBtn.addEventListener('click', function(){ //hides the admin display without saving any new cat data.
             octopus.adminCancel();
         });
         
         this.adminSaveBtn.addEventListener('click', function(){ //hides the admin display and saves new cat data.
-            octopus.adminSave();
-        });
+            octopus.adminSave(this.adminCatName.value, this.adminCatURL.value, this.adminCatClicks.value);
+        }.bind(this));
         
         this.render();
     },
